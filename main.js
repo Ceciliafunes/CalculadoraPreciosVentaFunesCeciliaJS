@@ -27,7 +27,7 @@ function verificarDatos (datos) {
     let numero = parseFloat(prompt(datos));
 
     while (isNaN(numero) || numero < 0) {
-        numero = parseFloat(prompt("Por favor ingresa un numero válido y mayor a 0: "));
+        numero = parseFloat(prompt("Por favor ingresa un numero válido, el mismo debe ser mayor o igual a 0: "));
     }
     return numero;
 }
