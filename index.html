@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Precio De Venta Online</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+            <div class="container-fluid barraNav">
+                <a class="logo navbar-brand" href="">
+                    <img src="asset/img/logoPvOnline.jpg" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            <div class="collapse navbar-collapse barraNavItem" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">CALCULADORA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">CONTACTO</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container-fluid sectionInicio">
+            <h1>Calculadora de Precios de venta. Online. Gratis</h1>
+            <h2>¿No sabés como sacar el precio de venta de tus productos?</h2>
+            <div>
+                <p>Descubre el <strong>precio ideal</strong> para tus productos.</p>
+            </div>
+        </section>
+        <section class="sectionCalculator container">
+            <div class="row">
+                <form action="" class="calculator">
+                    <label class="col" for="costo"></label>
+                    <strong>Costos Fijos y de Producción:</strong>
+                    <input type="number" placeholder="Introduce el costo">
+
+                    <label class="col" for="costoadicional"></label>
+                    <strong>Costos Adicionales:</strong>
+                    <input type="number" placeholder="Introduce el costo">
+
+                    <label class="col" for="margen"></label>
+                    <strong>Margen de Ganancia:</strong>
+                    <input type="number" placeholder="Introduce el margen">
+
+                    <button class="btnCalcular col">Calcular precio de Venta</button>
+                    
+                    <p class="resultado col">Resultado</p>
+                    <input type="text" placeholder="">
+                </form>
+            </div>
+
+        </section>
+        <section class="container-fluid sectionExplicacion">
+            <div class="container explicacion">
+                <h3>¿Tenes dudas sobe que poner en cada item?</h3>
+                <h4>Te dejamos una pequeña explicación.</h4>
+                <p>Primero debemos definir cuales son nuestros <strong>Costos fijos y de producción</strong>. Los <strong>costos de producción</strong> son
+                    todos los gastos relacionados con la fabricación o adquisición del producto. Esto incluye materiales, mano de obra, envío, etc.
+                    Los <strong>Costos fijos</strong> son los gastos generales que no varían con la cantidad de productos vendidos. Por ejemplo, alquiler de local, salarios del personal, etc.
+                </p>
+                <p>Luego continuamos por los <strong>costos adicionales o variables.</strong> Estos son los gastos que cambian según la cantidad de productos vendidos. 
+                    Por ejemplo, comisiones de venta, envíos, fletes, packaging, etc.
+                </p>
+                <p>Por último debes definir tu <strong>margen de ganancia</strong> estimado,  Por ejemplo, si deseas un 30% de ganancia, 
+                    convierte ese porcentaje a decimal (0.30).
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="container-fluid futer">
+        <section class="row">
+            <div class="redes">
+                <a href="https:" target="_blank"><img src="asset/img/facebook (1).png" alt="facebook"></a>
+                <a href="https:" target="_blank"><img src="asset/img/instagram (1).png" alt="instagram"></a>
+                <a href="https:" target="_blank"><img src="asset/img/whatsapp (1).png" alt="whatsapp"></a>
+                <a href="" target="_blank"><img src="asset/img/logotipo-de-linkedin.png" alt="linkedln"></a>
+                
+            </div>
+            <div class="licencia">
+                <p>Creado por CFR-DevWeb. Copyright © 2024. Todos los derechos reservados.</p>
+                
+            </div>
+        </section>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+</html>

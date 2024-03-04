@@ -1,0 +1,123 @@
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    background-color: #1b3d2ffa;
+}
+header nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+header .navbar .barraNav {
+    background-color: #F2FEDC;
+    width: 100%;
+}
+
+
+header nav div ul li {
+    color: #1b3d2ffa;
+    font-weight: bold;
+    padding: 0.15rem;
+    transition: 0.5s;
+}
+
+.navbar .barraNav li a:hover{
+    color: #889A00;
+}
+
+.logo img {
+    width: 6rem;
+    border-radius: 16.375rem;
+}
+.sectionInicio {
+    text-align: center;
+    color: #F5F5DC;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.calculator {
+    background-color: #F5F5DC;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.25rem;
+    border: .325rem solid #889A00;
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+}
+
+.calculator input {
+    padding: 1.125rem;
+    border: .325rem solid #889A00;
+}
+
+.btnCalcular {
+    background-color: #F2FEDC;
+    cursor: pointer;
+    border: 0.125rem solid #fff;
+    width: fit-content;
+    display: block;
+    margin: 1.25rem auto;
+    padding: 0.625rem 6.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    z-index: 10;
+}
+.btnCalcular:hover{
+    background-color: greenyellow;
+    transition: 1s;
+}
+.resultado {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sectionExplicacion {
+    width: 100%;
+    display: flex;
+    color: #F5F5DC;
+    text-align: center;
+}
+
+.sectionExplicacion .explicacion h3{
+    font-size: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.sectionExplicacion .explicacion h4 {
+    padding-bottom: .625rem;
+}
+.futer {
+    width: 100%;
+    background-color: #F2FEDC;
+    color: #889A00;
+    padding-top: .9375rem;
+    padding-bottom: .625rem;
+    border: .125rem solid #889A00;
+}
+.redes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.6125rem;
+}
+
+.redes img {
+    width: 1.25rem;
+}
+
+.licencia {
+    padding-top: 1.25rem;
+    padding-bottom: .55rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
