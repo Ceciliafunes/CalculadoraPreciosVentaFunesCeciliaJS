@@ -50,27 +50,33 @@
                 <form action="" class="calculator">
                     <label class="col" for="costo"></label>
                     <strong>Costos Fijos y de Producción:</strong>
-                    <input type="number" placeholder="Introduce el costo">
+                    <input id="costoFijo" type="number" placeholder="Introduce el costo">
 
                     <label class="col" for="costoadicional"></label>
                     <strong>Costos Adicionales:</strong>
-                    <input type="number" placeholder="Introduce el costo">
+                    <input id="costoVariable" type="number" placeholder="Introduce el costo">
 
                     <label class="col" for="margen"></label>
                     <strong>Margen de Ganancia:</strong>
-                    <input type="number" placeholder="Introduce el margen">
+                    <input id="ganancia" type="number" placeholder="Introduce el margen">
 
                     <button class="btnCalcular col">Calcular precio de Venta</button>
                     
                     <p class="resultado col">Resultado</p>
-                    <input type="text" placeholder="">
+                    <input id="resultados" type="text" placeholder="">
                 </form>
             </div>
 
         </section>
+
+        <section class="listaDatos container-fluid" id="listaDatos">
+
+
+        </section>
+
         <section class="container-fluid sectionExplicacion">
             <div class="container explicacion">
-                <h3>¿Tenes dudas sobe que poner en cada item?</h3>
+                <h3>¿Tenes dudas sobre que poner en cada item?</h3>
                 <h4>Te dejamos una pequeña explicación.</h4>
                 <p>Primero debemos definir cuales son nuestros <strong>Costos fijos y de producción</strong>. Los <strong>costos de producción</strong> son
                     todos los gastos relacionados con la fabricación o adquisición del producto. Esto incluye materiales, mano de obra, envío, etc.
@@ -107,6 +113,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
