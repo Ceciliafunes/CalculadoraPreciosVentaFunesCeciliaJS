@@ -71,7 +71,6 @@ costos1.listaCostos();
 const datosIngresados = [];
 
 datosIngresados.push(new Costos(costoFijo, costoVariable, ganancia, precioVenta));
-
 console.log(datosIngresados);
 
 
