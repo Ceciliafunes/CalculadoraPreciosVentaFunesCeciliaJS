@@ -47,29 +47,38 @@
         </section>
         <section class="sectionCalculator container">
             <div class="row">
-                <form action="" class="calculator">
+                <form action="" class="calculator" id="formulario">
+
+                    <label class="col" for="producto"></label>
+                    <strong>Nombre de tu producto:</strong>
+                    <input id="producto" type="text" placeholder="Introduce el nombre de tu producto" required>
+
+
                     <label class="col" for="costoFijo"></label>
                     <strong>Costos Fijos y de Producción:</strong>
-                    <input id="costoFijo" type="number" placeholder="Introduce el costo">
+                    <input id="costoFijo" type="number" placeholder="Introduce el costo" required>
 
                     <label class="col" for="costoVariable"></label>
                     <strong>Costos Adicionales:</strong>
-                    <input id="costoVariable" type="number" placeholder="Introduce el costo">
+                    <input id="costoVariable" type="number" placeholder="Introduce el costo" required>
 
                     <label class="col" for="ganancia"></label>
                     <strong>Margen de Ganancia:</strong>
-                    <input id="ganancia" type="number" placeholder="Introduce el margen">
+                    <input id="ganancia" type="number" placeholder="Introduce el margen" required>
 
-                    <button class="btnCalcular col">Calcular precio de Venta</button>
+                    <button class="btnCalcular col" id="calcular">Calcular precio de Venta</button>
                     
-                    <p class="resultado col">Resultado</p>
-                    <input id="resultados" type="text" placeholder="">
+                    <p class="resultado col" id="resultado"></p>
+                    
                 </form>
             </div>
 
         </section>
 
-        <section class="listaDatos container-fluid" id="listaDatos">
+        <section class="sectionDatos container">
+            <h2 class="text-center">Aquí aparecerán los datos ingresados</h2>
+            <div class="listaDatos" id="listaDatos"></div>
+            <button class="btnCalcular" id="eliminarDatos">Eliminar Datos</button>
 
 
         </section>
@@ -116,3 +125,5 @@
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
+
+

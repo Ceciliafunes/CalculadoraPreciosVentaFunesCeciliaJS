@@ -122,8 +122,19 @@ header nav div ul li {
     justify-content: center;
 }
 
-.listaDatos {
-    color: white;
+.sectionDatos h2 {
+    color: #F5F5DC;
     padding: 1.25rem 1.25rem 1.25rem 1.25rem;
-    text-align: left;
+    
 }
+
+.listaDatos {
+    background-color: #F5F5DC;
+    color: black;
+    display: grid;
+    align-items: center;
+    border-radius: 1.25rem;
+    border: .325rem solid #889A00;
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+}
+
