@@ -191,6 +191,8 @@ eliminarDatos.addEventListener('click', () => {
 
 
 //USO DE API Y fetch
+
+//API PARA ENVIAR EMAIL CON LOS DATOS ALMACENADOS
 //configuramos el evento click como una funcion asincrona
 
 const urlApi = 'https://mail-sender-api1.p.rapidapi.com/';
@@ -198,7 +200,8 @@ const urlApi = 'https://mail-sender-api1.p.rapidapi.com/';
 document.getElementById("formularioUsuario").addEventListener("click", async function(){
     const destinatario = document.getElementById("email").value;
     const asunto = "Listado de precios de venta online";
-    const cuerpo = datosCorreo(Costos);
+    const cuerpo = datosCorreo(JSON.parse(localStorage.getItem("datosIngresados")));
+
 
     const options = {
         method: `POST`,
@@ -230,13 +233,18 @@ document.getElementById("formularioUsuario").addEventListener("click", async fun
 
 // Función para obtener el cuerpo del correo electrónico
 
-function datosCorreo() {
+function datosCorreo(costosArray) {
     let cuerpo = "Datos Ingresados:\n";
-    for (const [key, value] of Object.entries(Costos)) {
-        cuerpo += `${key}: ${value}\n`;
-    }
+    costosArray.forEach(costos => {
+        cuerpo += `Producto: ${costos.producto}\n`;
+        cuerpo += `Costo Fijo: ${costos.costoFijo}\n`;
+        cuerpo += `Costo Variable: ${costos.costoVariable}\n`;
+        cuerpo += `Ganancia: ${costos.ganancia}%\n\n`;
+        cuerpo += `Precio de venta: $${costos.precioVenta}\n`;
+    });
     return cuerpo;
 }
+
 
 //funcion para animacion de enviado
 
@@ -262,16 +270,13 @@ function animationEnviado () {
 
 // Función para obtener el pronóstico del clima en la ubicación del usuario
 function obtenerPronosticoClima(latitud, longitud) {
-    const urlApiClima = `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${latitud}&lon=${longitud}`;
+    const apiKey = `8994e8a7f50c41ab90d4e13f0f1c08cf`;
+    const urlApiClima = `https://api.weatherbit.io/v2.0/current?lat=${latitud}&lon=${longitud}&key=${apiKey}`;
+
 
     // Realizar la solicitud GET a la API
-    fetch(urlApiClima, {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'c21bcd3e93msh076fff1aaccb55dp1f1a91jsnb0f535878a36',
-            'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
-        }
-    })
+    fetch(urlApiClima)
+        
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -287,21 +292,25 @@ function obtenerPronosticoClima(latitud, longitud) {
 }
 
 // Función para mostrar el pronóstico del clima en la página
+
 function mostrarPronosticoClima(pronostico) {
+
     // Aquí procesamos los datos del pronóstico del clima y los mostramos en el sitio web
-    const ciudad = pronostico.city_name;
+
+    const ciudad = pronostico.data[0].city_name;
     const grados = pronostico.data[0].temp;
 
     const pronosticoDiv = document.createElement("div");
     pronosticoDiv.innerHTML = ` <h3>Clima en tu zona: </h3>
                                 <p>Ciudad: ${ciudad}</p>
-                                <p>Grados: ${grados}°C</p>
+                                <p>Temperatura: ${grados}°C</p>
                                 `;
     document.getElementById("pronosticos").appendChild(pronosticoDiv); 
     console.log(pronostico);
 }
 
 // Obtener la ubicación del usuario (latitud y longitud)
+
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
         const latitud = position.coords.latitude;
