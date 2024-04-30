@@ -234,13 +234,13 @@ document.getElementById("formularioUsuario").addEventListener("click", async fun
 // Función para obtener el cuerpo del correo electrónico
 
 function datosCorreo(costosArray) {
-    let cuerpo = "Datos Ingresados:\n";
+    let cuerpo = "Datos Ingresados:\n\n";
     costosArray.forEach(costos => {
         cuerpo += `Producto: ${costos.producto}\n`;
         cuerpo += `Costo Fijo: ${costos.costoFijo}\n`;
         cuerpo += `Costo Variable: ${costos.costoVariable}\n`;
-        cuerpo += `Ganancia: ${costos.ganancia}%\n\n`;
-        cuerpo += `Precio de venta: $${costos.precioVenta}\n`;
+        cuerpo += `Ganancia: ${costos.ganancia}%\n`;
+        cuerpo += `Precio de venta: $${costos.precioVenta}\n\n`;
     });
     return cuerpo;
 }
