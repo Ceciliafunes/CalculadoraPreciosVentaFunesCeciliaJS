@@ -6,6 +6,7 @@ class Costos {
         this.costoFijo = costoFijo;
         this.costoVariable = costoVariable;
         this.ganancia = ganancia;
+        this.precioVenta = precioVenta;
         
     }
 }
@@ -18,12 +19,25 @@ Costos.prototype.CalculoPrecioVenta = function() {
 }
 
 
+
 //array para guardar los datos ingresados
 let datosIngresados = [];
 
 if(localStorage.getItem("ultimoDatoIngresado")){
     ultimoDatoIngresado = JSON.parse(localStorage.getItem("costos"));
 }
+
+
+
+let datosUsarios = [];
+
+class Usuario {
+    constructor (nombre, email) {
+        this.nombre = nombre;
+        this.email = email;
+    }
+}
+
 
 //funciones para manejar el envio del formulario
 
@@ -34,23 +48,23 @@ document.getElementById("formulario").addEventListener ("submit", function(e) {
     let costoFijo = parseFloat(document.getElementById("costoFijo").value);
     let costoVariable = parseFloat(document.getElementById("costoVariable").value);
     let ganancia = parseFloat(document.getElementById("ganancia").value);
-
+    
 
     //validacion de datos
     if (isNaN(costoFijo) || isNaN(costoVariable) || isNaN(ganancia) || costoFijo < 0 || costoVariable < 0 || ganancia < 0) {
         alert("ERROR. por favor complete todos los campos. Con números mayores o iguales a 0");
         return;
     }
-
+    
     //objeto con los valores ingresados
     let costos = new Costos(producto, costoFijo, costoVariable, ganancia);
 
-    let precioVenta = Math.round(costos.CalculoPrecioVenta());
+    let precioVenta = Math.round(costos.CalculoPrecioVenta(),);
 
     //Mostrar resultado
     document.getElementById("resultado").innerHTML = `<strong>RESULTADO: $${precioVenta}</strong>`
 
-    datosIngresados.push(new Costos (producto, costoFijo, costoVariable, ganancia));
+    datosIngresados.push(new Costos (producto, costoFijo, costoVariable, ganancia, precioVenta));
     console.log(datosIngresados);
 
     //guardamos todos los datos ingresados
@@ -74,8 +88,64 @@ document.getElementById("formulario").addEventListener ("submit", function(e) {
     }) 
     
     //almacenamos los datos capturados
-    localStorage.setItem("ultimoDatoIngresado", JSON.stringify(costos))
-})
+    localStorage.setItem("ultimoDatoIngresado", JSON.stringify(costos));
+    
+
+
+    //sweert alert
+    let timerInterval;
+    Swal.fire({
+        title: "Calculando...",
+        html: "aguarda un <b></b> instante .",
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+            timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+    },
+    willClose: () => {
+        clearInterval(timerInterval);
+    }
+}).then((result) => {
+      /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("se cerro el mensaje");
+    }
+    });
+}, 1500);
+
+
+
+
+// Manejar envío de formulario de usuario
+document.getElementById("formularioUsuario").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombres").value;
+    let email = document.getElementById("email").value;
+
+    if (!nombre || !email) {
+        alert("Por favor, ingrese su nombre y correo electrónico.");
+        return;
+    }
+
+    let nuevoUsuario = new Usuario (nombre, email)
+    console.log(nuevoUsuario);
+
+    datosUsarios.push(nuevoUsuario);
+    // Almacenar datos de usuarios en localStorage
+    localStorage.setItem("datosUsuarios", JSON.stringify(datosUsarios));
+
+    let ultimoUsuario = [];
+    ultimoUsuario.push(nuevoUsuario);
+    //almacenamos ultimo usuario
+
+    localStorage.setItem("ultimoUsuario", JSON.stringify(nuevoUsuario));
+});
+
 
 
 //FUNCIONES PARA ELIMINAR LOS DATOS INGRESADOS
@@ -105,4 +175,141 @@ function CalculoPrecioVenta (costoFijo, costoVariable, ganancia) {
 }
 
 
+//toastify
 
+eliminarDatos.addEventListener('click', () => {
+    Toastify({
+        text: "Eliminado",
+        duration: 2000,
+        gravity: top,
+        style: {
+            background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        }
+    }).showToast();
+})
+
+
+
+//USO DE API Y fetch
+//configuramos el evento click como una funcion asincrona
+
+const urlApi = 'https://mail-sender-api1.p.rapidapi.com/';
+
+document.getElementById("formularioUsuario").addEventListener("click", async function(){
+    const destinatario = document.getElementById("email").value;
+    const asunto = "Listado de precios de venta online";
+    const cuerpo = datosCorreo(Costos);
+
+    const options = {
+        method: `POST`,
+        headers: {
+            "content-type": "application/json",
+            "X-RapidAPI-Key": "c21bcd3e93msh076fff1aaccb55dp1f1a91jsnb0f535878a36",
+            "X-RapidAPI-Host": "mail-sender-api1.p.rapidapi.com",
+        },
+        body: JSON.stringify({
+            sendto: destinatario,
+            replyTo: 'funes.ceciliagisela@gmail.com',
+            ishtml: 'false',
+            title: asunto,
+            body: cuerpo
+        })
+    }
+    try {
+        //esperamos a que se resuelva la promesa fetch
+        const response = await  fetch(urlApi, options);
+        const result = await response.text();
+        console.log(result);
+        //mensaje de enviado
+        animationEnviado();
+
+    } catch (error) {
+        console.error(error);
+    }
+})
+
+// Función para obtener el cuerpo del correo electrónico
+
+function datosCorreo() {
+    let cuerpo = "Datos Ingresados:\n";
+    for (const [key, value] of Object.entries(Costos)) {
+        cuerpo += `${key}: ${value}\n`;
+    }
+    return cuerpo;
+}
+
+//funcion para animacion de enviado
+
+const enviarDatos = document.getElementById("enviar");
+
+function animationEnviado () {
+    enviarDatos.addEventListener(`click`, () => {
+        Toastify({
+            text: "Enviado",
+            duration: 2000,
+            gravity: top,
+            style: {
+                background: "linear-gradient(to right, #05F428, #13CB2E)",
+            }
+        }).showToast()
+    })
+}
+
+
+//SECCION API CLIMA
+
+
+
+// Función para obtener el pronóstico del clima en la ubicación del usuario
+function obtenerPronosticoClima(latitud, longitud) {
+    const urlApiClima = `https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=${latitud}&lon=${longitud}`;
+
+    // Realizar la solicitud GET a la API
+    fetch(urlApiClima, {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'c21bcd3e93msh076fff1aaccb55dp1f1a91jsnb0f535878a36',
+            'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Error en la solicitud fetch.');
+    })
+    .then(data => {
+        mostrarPronosticoClima(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Función para mostrar el pronóstico del clima en la página
+function mostrarPronosticoClima(pronostico) {
+    // Aquí procesamos los datos del pronóstico del clima y los mostramos en el sitio web
+    const ciudad = pronostico.city_name;
+    const grados = pronostico.data[0].temp;
+
+    const pronosticoDiv = document.createElement("div");
+    pronosticoDiv.innerHTML = ` <h3>Clima en tu zona: </h3>
+                                <p>Ciudad: ${ciudad}</p>
+                                <p>Grados: ${grados}°C</p>
+                                `;
+    document.getElementById("pronosticos").appendChild(pronosticoDiv); 
+    console.log(pronostico);
+}
+
+// Obtener la ubicación del usuario (latitud y longitud)
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const latitud = position.coords.latitude;
+        const longitud = position.coords.longitude;
+        obtenerPronosticoClima(latitud, longitud);
+    }, function(error) {
+        console.error('Error al obtener la ubicación del usuario:', error);
+    });
+} else {
+    console.error('Geolocalización no es compatible en este navegador.');
+}

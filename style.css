@@ -4,81 +4,175 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    width: 100%;
-    background-color: #1b3d2ffa;
-}
+
+
+
+/*HEADER*/
+
+
 header nav {
     display: flex;
     justify-content: space-around;
-}
-
-header .navbar .barraNav {
-    background-color: #F2FEDC;
     width: 100%;
 }
 
+header nav ul {
+    display: flex;
+    list-style: none;
+}
 
 header nav div ul li {
-    color: #1b3d2ffa;
     font-weight: bold;
+    font-size: 1.3rem;
     padding: 0.15rem;
     transition: 0.5s;
 }
 
+.navbar .barraNav {
+    background: linear-gradient(#332136f5, #845EC2) padding-box,
+    linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    top: 0;
+    bottom: 0;
+    padding-bottom: .625rem;
+}
+
+
+
 .navbar .barraNav li a:hover{
-    color: #889A00;
+    color: #D65DB1;
 }
 
 .logo img {
     width: 6rem;
     border-radius: 16.375rem;
 }
+
+main {
+    width: 100%;
+    background-color: black;
+}
+
+
 .sectionInicio {
+    background-color: black;
     text-align: center;
-    color: #F5F5DC;
+    color: white;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 }
 
+
+
 .calculator {
-    background-color: #F5F5DC;
+    background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    color: white;
     display: grid;
     justify-content: center;
     align-items: center;
     border-radius: 1.25rem;
-    border: .325rem solid #889A00;
     padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+    animation: gradient 5s ease infinite;
+    
+}
+
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.calculator button:active {
+    scale: 0.95;
 }
 
 .calculator input {
-    padding: 1.125rem;
-    border: .325rem solid #889A00;
+    padding-top: 1.125rem;
+    padding-bottom: 1.150rem;
+    border: .125rem solid #845EC2;
+    border-radius: .3125rem;
+    gap: .9375rem;
+    background-color: #000 ;
+    color: white;
 }
 
-.btnCalcular {
-    background-color: #F2FEDC;
+.sectionCalculator strong {
+    padding: .55rem;
+}
+
+.button {
+    position: relative;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding-bottom: .725rem ;
+    padding-top: .725rem; 
+    gap: .75rem;
+    border-radius: .5rem;
     cursor: pointer;
-    border: 0.125rem solid #fff;
-    width: fit-content;
-    display: block;
-    margin: 1.25rem auto;
-    padding: 0.625rem 6.25rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: black;
-    z-index: 10;
+    margin-top: .825rem;
 }
-.btnCalcular:hover{
-    background-color: greenyellow;
-    transition: 1s;
+
+.button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    border-radius: .625rem;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.button::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.button:hover::after {
+    filter: blur(30px);
+}
+
+.button:hover::before {
+    transform: rotate(-180deg);
+}
+
+.button:active::before {
+    scale: 0.7;
+}
+
+
 .resultado {
-    color: red;
+    padding-top: 1.25rem;
+    padding-bottom: .625rem;
+    color: #F9F871;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     font-weight: bold;
 }
+
 
 .sectionExplicacion {
     width: 100%;
@@ -95,46 +189,258 @@ header nav div ul li {
 .sectionExplicacion .explicacion h4 {
     padding-bottom: .625rem;
 }
-.futer {
-    width: 100%;
-    background-color: #F2FEDC;
-    color: #889A00;
-    padding-top: .9375rem;
-    padding-bottom: .625rem;
-    border: .125rem solid #889A00;
-}
-.redes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0.6125rem;
-}
 
-.redes img {
-    width: 1.25rem;
-}
-
-.licencia {
-    padding-top: 1.25rem;
-    padding-bottom: .55rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
 
 .sectionDatos h2 {
-    color: #F5F5DC;
+    color: white;
     padding: 1.25rem 1.25rem 1.25rem 1.25rem;
     
 }
 
 .listaDatos {
-    background-color: #F5F5DC;
-    color: black;
-    display: grid;
+    width: 100%;
     align-items: center;
+    background-color: rgba(45, 43, 43, 0.689);
+    color: white;
     border-radius: 1.25rem;
-    border: .325rem solid #889A00;
+    border: .325rem solid #845EC2;
     padding: 1.25rem 1.25rem 1.25rem 1.25rem;
 }
 
+.enviarDatos {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+
+
+
+
+/* === removing default button style ===*/
+.calcu {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+  /* button styling */
+.calcu {
+    border-right: 6px;
+    -webkit-text-stroke-color: rgba(201, 187, 187, 0.6);
+    --animation-color: #8806df;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(-webkit--text-stroke-color);
+}
+  /* this is the text, when you hover on button */
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(border-right) solid var(animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+  /* hover */
+.calcu:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+}
+
+
+/*boton eliminar datos*/
+.btnEliminar {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 1.75rem 1.75rem 1.75rem 1.75rem;
+}
+
+
+
+.ui-btn {
+    
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(219, 218, 218);
+    border-style: solid;
+    background-color: transparent;
+    border-color: rgb(219, 218, 218);
+    width: 12.5rem;
+    height: 3.75rem;
+    transition: 0.2s ease;
+    text-transform: uppercase;
+    border-width: .125rem;
+    font-weight: 500;
+    font-size: 1.125rem;
+    letter-spacing: .125rem;
+}
+.ui-btn:hover {
+    color: rgb(247, 247, 247);
+    background-color: rgb(202, 25, 25);
+    border-color: rgb(202, 25, 25);
+    text-shadow: 0 0 50px white, 0 0 20px white, 0 0 15px white;
+    box-shadow: 0 0 50px rgb(202, 25, 25), 0 0 30px rgb(202, 25, 25),
+    0 0 60px rgb(202, 25, 25), 0 0 120px rgb(202, 25, 25);
+    font-size: 1.25rem;
+    width: 11.5rem;
+    height: 3.50rem;
+    letter-spacing: .1875rem;
+}
+.ui-btn:active {
+    width: 7.1875rem;
+    height: 2.375rem;
+    letter-spacing: .0625rem;
+}
+
+/*seccion clima*/
+
+.sectionClima {
+    
+    background: linear-gradient(to right, rgb(97, 67, 133), rgb(81, 99, 149));
+}
+
+.pronostico {
+    color: transparent;
+    -moz-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 2px;
+    -moz-text-stroke-color: #000000;
+    -webkit-text-stroke-color: #ffffff;
+}
+.pronostico {
+    text-shadow: 7px 7px #8dffcd;
+}
+
+
+
+
+
+/*FOOTER REDES UNIVERSE*/
+.futer {
+    width: 100%;
+    background: linear-gradient(#332136f5, #845EC2) padding-box,
+    linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    padding-top: 2.1rem;
+    padding-bottom: 2.2rem;
+    
+}
+
+
+ul {
+    list-style: none;
+}
+
+.example-2 {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+}
+.example-2 .icon-content {
+    margin: 0 10px;
+    position: relative;
+}
+.example-2 .icon-content .tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+.example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -50px;
+}
+.example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+.example-2 .icon-content a:hover {
+    color: white;
+}
+.example-2 .icon-content a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+    height: 100%;
+}
+
+.example-2 .icon-content a[data-social="linkedin"] .filled,
+.example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
+    background-color: #0274b3;
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"] ~ .tooltip {
+    background-color: #24262a;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+    background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f);
+}
+.example-2 .icon-content a[data-social="youtube"] .filled,
+.example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+    background-color: #ff0000;
+}
+
+.licencia {
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-size: bold;
+    padding-top: .625rem;
+    padding-bottom: .625rem;
+}
